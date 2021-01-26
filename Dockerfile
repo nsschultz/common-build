@@ -1,5 +1,6 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS base-csharp-builder
-RUN apt-get update && apt-get install -y --no-install-recommends default-jre && \
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS base-csharp-builder
+RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2
+RUN apt-get update && apt-get install -y --no-install-recommends openjdk-11-jre && \
     dotnet tool install --global dotnet-sonarscanner --version 4.9.0 && \
     dotnet tool install --global MiniCover --version 3.1.0
 ENV DOTNET_ROLL_FORWARD=Major \
