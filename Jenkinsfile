@@ -1,5 +1,5 @@
 def IMAGES = [
-    'base-csharp-builder': '5.0.0',
+    'base-csharp-builder': '5.0.102',
     'base-csharp-runner': '5.0.0',
     'base-nginx-runner': '1.18.0'
 ]
