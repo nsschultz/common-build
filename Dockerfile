@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS base-csharp-builder
+FROM mcr.microsoft.com/dotnet/sdk:5.0.102-ca-patch-buster-slim AS base-csharp-builder
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man2
 RUN apt-get update && apt-get install -y --no-install-recommends default-jre && \
     dotnet tool install --global dotnet-sonarscanner --version 4.9.0 && \
@@ -9,7 +9,7 @@ WORKDIR /app
 COPY build.sh .
 RUN chmod +x ./build.sh
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base-csharp-runner
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base-csharp-runner
 RUN useradd -u 5000 service-user && mkdir /app && chown -R service-user:service-user /app
 ENV ASPNETCORE_URLS=http://+:8080
 USER service-user:service-user
