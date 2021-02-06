@@ -32,5 +32,4 @@ pipeline {
             } } 
         }
     }
-    post { always { script { sh("docker builder prune -f --filter \'unused-for=24h\'") } } }
 }
